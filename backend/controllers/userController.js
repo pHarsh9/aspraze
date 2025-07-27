@@ -11,12 +11,14 @@ const registerUser = asyncHandler(async(req, res)=>{
     if(!name || !email || !password){
         res.status(400)
         throw new Error('Please enter all the fiels')
+        
     }
     //check if user exists
     const userExists = await User.findOne({email})
     if(userExists){
         res.status(400)
         throw new Error('USer already exists!')
+        
     }
     //Hash password
     const salt = await bcrypt.genSalt(10)
@@ -67,13 +69,7 @@ const loginUser = asyncHandler(async(req, res)=>{
 //@route POST /api/users/me
 //@access PRIVATE
 const getMe = asyncHandler(async(req, res)=>{
-    const {_id, name, email } = await User.findById(req.user.id)
-
-    res.status(200).json({
-        id: _id,
-        name, 
-        email
-    }) 
+    res.status(200).json(req.user) 
 })
 
 //Generate JWT
