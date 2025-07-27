@@ -1,4 +1,5 @@
 const path = require('path')
+const cors = require('cors')
 const express = require('express')
 const dotenv = require('dotenv').config()
 const colors = require('colors')
@@ -12,6 +13,10 @@ const port = process.env.PORT
 connectDB()
 
 const app = express()
+app.use(cors({
+  origin: process.env.VITE_FRONTEND_URL,
+  credentials: true
+}))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
