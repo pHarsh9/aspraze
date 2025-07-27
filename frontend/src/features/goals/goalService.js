@@ -1,6 +1,6 @@
 import axios from "axios";
  
-const API_URL = '/api/goals/'
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/goals/`
 
 //Create new goal
 const createGoal = async(goalData, token)=>{
