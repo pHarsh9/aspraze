@@ -8,7 +8,6 @@ const protect = asyncHandler(async(req, res, next)=>{
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try {
             //Get token from header
-            console.log(req.headers.authorization)
             token = req.headers.authorization.split(' ')[1]
 
             //Verify token
@@ -16,7 +15,6 @@ const protect = asyncHandler(async(req, res, next)=>{
             
             //Get user from token
             req.user = await User.findById(decoded.id).select('-password')
-            console.log(req.user)
             next()
         } catch (error) {
             console.log(error)
