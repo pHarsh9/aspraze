@@ -21,6 +21,9 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use('/api/goals',require('./routes/goalRoutes'))
+app.use('/api/users',require('./routes/userRoutes'))
+
 //Serve frontend
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(process.cwd(), '../frontend/dist')));
@@ -32,9 +35,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => res.send('Please set to production'));
 }
 
-
-app.use('/api/goals',require('./routes/goalRoutes'))
-app.use('/api/users',require('./routes/userRoutes'))
 app.use(errorHandler)
 
 app.listen(port, () => console.log(`Server started on port ${port}`))
