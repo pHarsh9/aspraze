@@ -190,7 +190,9 @@ h3 {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
-
+.logo{
+  font:bold;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
